@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Quiz</string>
+
+    <string name="question_numberone">The Pacific Ocean is larger than the Atlantic Ocean.</string>
+    <string name="question_numbertwo">Texas has a greater GDP than all of Russia.</string>
+    <string name="question_numberthree">There is no land in Nevada owned by The US Government.</string>
+    <string name="question_numberfour">Alaska has the largest coastline of any state.</string>
+    <string name="question_numberfive">The capital of the United States was always Washington, DC.</string>
+
+    <string name="true_option">True</string>
+    <string name="false_option">False</string>
+    <string name="next_option">Next</string>
+    <string name="wrong_answer">Incorrect!</string>
+    <string name="correct_answer">Correct!</string>
+    <string name="previous_option">Previous</string>
+    <string name="cheat">Cheat!</string>
+    <string name="are_you_sure_you_want_to_do_this">Are you sure you want to do this?</string>
+    <string name="show_answer">Show Answer</string>
+</resources>
