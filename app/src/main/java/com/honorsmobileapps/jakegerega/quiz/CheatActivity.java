@@ -25,6 +25,15 @@ public class CheatActivity extends AppCompatActivity {
         correctAnswer = findViewById(R.id.answer_text_view);
         cheatConfirm = findViewById(R.id.confirmcheat);
 
+        if(savedInstanceState != null){
+            cheatState = savedInstanceState.getBoolean(CHEAT_STATE);
+            if(cheatState){
+                correctAnswer.setText(getIntent().getBooleanExtra(ANSWER_STATE, false) + "");
+                cheatConfirm.setVisibility(View.INVISIBLE);
+                setAnswerShownResult();
+            }
+        }
+
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,6 +41,7 @@ public class CheatActivity extends AppCompatActivity {
                     correctAnswer.setText(getIntent().getBooleanExtra(ANSWER_STATE, false) + "");
                     cheatState = true;
                     cheatConfirm.setVisibility(View.INVISIBLE);
+                    setAnswerShownResult();
                 }
             }
         };
@@ -52,5 +62,10 @@ public class CheatActivity extends AppCompatActivity {
     }
     public static boolean wasAnswerShown(Intent result){
         return result.getBooleanExtra(CHEAT_STATE, false);
+    }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putBoolean(CHEAT_STATE, cheatState);
     }
 }

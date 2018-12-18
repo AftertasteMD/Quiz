@@ -26,6 +26,7 @@ public class QuizActivity extends AppCompatActivity {
     private static final String TAG = "QuizActivity";
     private static final String KEY_QUESTIONINDEX = "indexOfQuestion";
     private static final int CHEAT_STATE_REQUEST_CODE = 0;
+    private static final String CHEATER_STATE = "isCheater";
     private boolean isCheater = false;
 
     private Question[] questionArray = {
@@ -49,6 +50,10 @@ public class QuizActivity extends AppCompatActivity {
         questionTextView = findViewById(R.id.question);
         cheatOptionButton = findViewById(R.id.cheatbutton);
 
+        if(savedInstanceState != null){
+            isCheater = savedInstanceState.getBoolean(CHEATER_STATE);
+        }
+
         updateQuestion();
         if (savedInstanceState != null) {
             indexOfQuestion = savedInstanceState.getInt(KEY_QUESTIONINDEX);
@@ -71,6 +76,7 @@ public class QuizActivity extends AppCompatActivity {
                         indexOfQuestion++;
                         updateQuestion();
                     }
+                    isCheater = false;
                 }
                 if (v.getId() == R.id.previousbutton) {
                     if (indexOfQuestion == 0) {
@@ -89,6 +95,7 @@ public class QuizActivity extends AppCompatActivity {
                         indexOfQuestion++;
                         updateQuestion();
                     }
+                    isCheater = false;
                 }
                 if (v.getId() == R.id.cheatbutton) {
                     Intent i = CheatActivity.newIntent(QuizActivity.this, questionArray[indexOfQuestion].getAnswerState());
@@ -131,5 +138,10 @@ public class QuizActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putBoolean(CHEATER_STATE, isCheater);
     }
 }
